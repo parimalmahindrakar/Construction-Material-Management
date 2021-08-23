@@ -1,0 +1,33 @@
+<% include partials/_header %>
+<div class="container mt-5">
+    <div class="row">
+        <h4> 
+            Edit Contact details for Client     "<% if (data_client) { %>
+                                                    <% for(var i = 0; i < data_client.length; i++) { %>
+                                                        <%= data_client[i].CLIENT_NAME %> 
+                                                    <% } %>
+                                                <% } %>"   
+        </h4>
+        <div class="col-md-12 card" id="circle">           
+            <div class="card-body">
+                <form action="/contact/update/<%= data.CONTACT_ID %>" method="POST">
+                    <div class="form-group disp-none">
+                        <input type="none" name="CLIENT_ID" value="<%=data.CLIENT_ID %>" class="form-control">
+                    </div> 
+                    <div class="form-group">
+                        Phone No. : 
+                        <input type="text" name="PHONE_NO" value="<%=data.PHONE_NO %>" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        Email : 
+                        <input type="text" name="EMAIL" value="<%=data.EMAIL %>" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="margin-left: 48%; width: 120px;">
+                        UPDATE
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<% include partials/_footer %>

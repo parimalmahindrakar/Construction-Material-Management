@@ -1,0 +1,32 @@
+<% include partials/_header %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12 card">
+      <div class="card-body">
+        <form action="/requirement/update/<%= data.ORDER_NO %>" method="POST">
+          <div class="form-group">
+            Client ID : 
+            <input type="text" name="CLIENT_ID" value="<%=data.CLIENT_ID %>" 
+              class="form-control">
+          </div>
+          <div class="form-group">
+            Material ID : 
+            <input type="text" name="MATERIAL_ID" value="<%=data.MATERIAL_ID %>"
+              class="form-control">
+          </div>
+          <div class="form-group">
+            Enter Quantity
+            <input type="text" name="QUANTITY" value="<%=data.QUANTITY %>"
+              class="form-control">
+          </div>
+          <button type="submit" class="btn btn-primary" style="margin-left: 50%;">
+            save
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include partials/_footer %>

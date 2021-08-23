@@ -1,0 +1,34 @@
+<% include partials/_header %>
+
+<div class="container mt-5">
+  <div class="row">
+    <h4> Edit Material Details</h4>
+    <div class="col-md-12 card">
+      <div class="card-body">
+        <form action="/material/update/<%= data.MATERIAL_ID %>" method="POST">
+          <div class="form-group">
+            Material Supplier : 
+            <input type="text" name="MATERIAL_NAME" value="<%=data.MATERIAL_NAME %>"  class="form-control">
+          </div>
+          <div class="form-group">
+            Material Type : 
+            <input type="text" name="MATERIAL_TYPE" value="<%=data.MATERIAL_TYPE %>" class="form-control">
+          </div>
+          <div class="form-group">
+            Material Grade/Sub-Type :
+            <input type="text" name="MATERIAL_GRADE" value="<%=data.MATERIAL_GRADE %>" class="form-control">
+          </div>
+          <div class="form-group">
+            Material Cost : 
+            <input type="text" name="COST" value="<%=data.COST %>" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-primary" style="margin-left: 50%;">
+            UPDATE
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include partials/_footer %>
