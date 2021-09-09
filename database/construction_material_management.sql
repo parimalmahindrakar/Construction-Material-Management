@@ -61,14 +61,6 @@ CREATE TABLE `stock` (
   CONSTRAINT `stock_ibfk_1` FOREIGN KEY (`MATERIAL_ID`) REFERENCES `material` (`MATERIAL_ID`)
 );
 
-CREATE TABLE `temp_req` (
-  `CLIENT_ID` int DEFAULT NULL,
-  `MATERIAL_ID` int DEFAULT NULL,
-  `QUANTITY` int DEFAULT NULL,
-  KEY `CLIENT_ID` (`CLIENT_ID`),
-  KEY `MATERIAL_ID` (`MATERIAL_ID`),
-  CONSTRAINT `temp_req_ibfk_1` FOREIGN KEY (`CLIENT_ID`) REFERENCES `client` (`CLIENT_ID`),
-  CONSTRAINT `temp_req_ibfk_2` FOREIGN KEY (`MATERIAL_ID`) REFERENCES `material` (`MATERIAL_ID`)
-) ;
+
 
 INSERT INTO `material` VALUES (1,'UltraTech Cement','Cement','33',340),(2,'UltraTech Cement','Cement','43',370),(3,'UltraTech Cement','Cement','53',390),(4,'Ambuja Cement','Cement','33',325),(5,'Ambuja Cement','Cement','43',345),(6,'Ambuja Cement','Cement','53',370),(7,'Bharat Bricks','Bricks','Fly Ash - 4 inch',5),(8,'Bharat Bricks','Bricks','Fly Ash - 6 inch',7),(9,'Bharat Bricks','Bricks','AAC - 150',27),(10,'Sumit Bricks','Blocks','AAC - 200',30),(11,'Sumit Bricks','Blocks','AAC - 250',35),(12,'Jindal Steel','Steel','FE - 500',48000),(13,'Asian Paints','Paint','OBD',140);

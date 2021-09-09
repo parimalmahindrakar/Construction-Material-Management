@@ -521,10 +521,7 @@ controller.requirementsave = (req, res) => {
 
           var realstocks =stocks[0].STOCK - data.QUANTITY ;
           
-          if (data.QUANTITY > realstocks) {
-            alert("stock exceeded")
-            // window.location.reload();
-          }
+         
           connection.query("update stock set stock=? where MATERIAL_ID=?", [realstocks, data.MATERIAL_ID], (err, stocksid) => {
             connection.query('INSERT INTO requirement SET ?', data, (err, requirement) => {
               console.log(requirement)
