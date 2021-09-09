@@ -2,8 +2,6 @@ const { compile } = require("morgan");
 
 const controller = {};
 
-
-
 controller.employee = (req,res) => {
   res.render('employee');
 }
@@ -21,11 +19,6 @@ controller.addemployee = (req,res) => {
     });
   });
 }
-
-
-
-
-
 
 controller.home = (req, res) => {
   req.getConnection((err, conn) => {
@@ -417,6 +410,10 @@ controller.errorStock = (req, res) => {
   res.render('error_stock');
 }
 
+controller.wrongEnteredStock = (req, res) => {
+  res.render('error_entered_stocks');
+}
+
 
 
 controller.stockedit = (req, res) => {
@@ -516,13 +513,34 @@ controller.requirementlist = (req, res) => {
 
 controller.requirementsave = (req, res) => {
   const data = req.body;
-  console.log(req.body)
   if (data.QUANTITY > 0) {
     req.getConnection((err, connection) => {
-      const query = connection.query('INSERT INTO TEMP_REQ SET ?', data, (err, requirement) => {
-        console.log(requirement)
-        res.redirect('/requirement');
+      connection.query("select * from material where MATERIAL_ID = ?", [data.MATERIAL_ID], (err, materials) => {
+        data["AMOUNT"] = materials[0].COST * data.QUANTITY;
+        connection.query("select * from stock where MATERIAL_ID=?", [data.MATERIAL_ID], (err, stocks) => {
+
+          var realstocks =stocks[0].STOCK - data.QUANTITY ;
+          
+          if (data.QUANTITY > realstocks) {
+            alert("stock exceeded")
+            // window.location.reload();
+          }
+          connection.query("update stock set stock=? where MATERIAL_ID=?", [realstocks, data.MATERIAL_ID], (err, stocksid) => {
+            connection.query('INSERT INTO requirement SET ?', data, (err, requirement) => {
+              console.log(requirement)
+              res.redirect('/requirement');
+            })
+          })
+          
+         
+          
+          console.log("\n\n\n nice data\n\n\n",data)
+          
+        })
+
+        
       })
+      
     })
   }
   else {
@@ -568,6 +586,7 @@ controller.requirementdelete = (req, res) => {
 
 controller.clientbill = (req, res) => {
   const { id } = req.params;
+  console.log("idman :")
   console.log(id);
   req.getConnection((err, conn) => {
     conn.query("SELECT * FROM REQUIREMENT WHERE CLIENT_ID = ?", [id], (err, orderdet) => {

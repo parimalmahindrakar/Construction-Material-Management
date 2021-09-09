@@ -1,7 +1,5 @@
 const router = require('express').Router();
 
-const { Router } = require('express');
-const { clientlist } = require('../controllers/Controller');
 const Controller = require('../controllers/Controller');
 
 router.get('/',Controller.home);
@@ -22,7 +20,7 @@ router.post('/client/add',Controller.clientsave);
 router.get('/client/update/:id', Controller.clientedit);
 router.post('/client/update/:id', Controller.clientupdate);
 router.get('/client/bill/:id', Controller.clientbill);
-// router.get('/client/delete/:id', Controller.clientdelete);
+router.get('/client/delete/:id', Controller.clientdelete);
 
 router.get('/material', Controller.materiallist);
 router.post('/material/add',Controller.materialsave);
@@ -46,7 +44,10 @@ router.post('/stock/update/:id', Controller.stockupdate);
 router.get('/stock/delete/:id', Controller.stockdelete);
 
 router.get('/requirement', Controller.requirementlist);
-router.post('/requirement/add',Controller.requirementsave);
+
+router.post('/requirement/add', Controller.requirementsave);
+router.get('/wrongenteredstock',Controller.wrongEnteredStock);
+
 // router.get('/requirement/update/:id', Controller.requirementedit);
 // router.post('/requirement/update/:id', Controller.requirementupdate);
 router.get('/requirement/delete/:id', Controller.requirementdelete);

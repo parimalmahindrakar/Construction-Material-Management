@@ -1,8 +1,8 @@
 const express = require('express'),
-      path = require('path'),
-      morgan = require('morgan'),
-      mysql = require('mysql'),
-      myConnection = require('express-myconnection');
+path = require('path'),
+morgan = require('morgan'),
+mysql = require('mysql'),
+myConnection = require('express-myconnection');
       
 
 const app = express();
@@ -19,9 +19,9 @@ app.set('view engine', 'ejs');
 app.use(morgan('dev'));
 app.use(myConnection(mysql, {
   host: 'localhost',
-  user: 'root',
+  user: 'parimal',
   password: '',
-  // port: 3306,
+  port: 3306,
   database: 'construction_material_management',
   multipleStatements: true
 }));
